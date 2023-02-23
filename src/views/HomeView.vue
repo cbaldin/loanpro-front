@@ -1,10 +1,6 @@
 <template>
   <div>
-<<<<<<< HEAD
-    <h1>Operações</h1>
-=======
     <h1>Operations</h1>
->>>>>>> 273ac02 (Inicial commit)
     <br><br><br>
     <div class="container">
       <div name="operations" class="myDiv">
@@ -59,7 +55,6 @@ import api from '../main.js'
 const fetchClient = () => {
   const defaultOptions = {
     baseURL: 'http://ec2-52-90-4-159.compute-1.amazonaws.com:8080/api/v1',
-    baseURL: 'http://localhost:8080/api/v1',
     headers: {
       'Content-Type': 'application/json'
     }
