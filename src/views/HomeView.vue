@@ -54,7 +54,7 @@ import api from '../main.js'
 
 const fetchClient = () => {
   const defaultOptions = {
-    baseURL: 'http://ec2-52-90-4-159.compute-1.amazonaws.com:8080/api/v1',
+    baseURL: 'https://ec2-44-204-177-134.compute-1.amazonaws.com:4443/api/v1',
     headers: {
       'Content-Type': 'application/json'
     }
