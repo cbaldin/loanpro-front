@@ -33,7 +33,6 @@ router.beforeEach((to, from, next) => {
     const auth = useAuth()
     if (auth.token && auth.user) {
       const isAuthenticated = auth.checkToken()
-      console.log(isAuthenticated)
       if (isAuthenticated) {
         next()
       } else {
