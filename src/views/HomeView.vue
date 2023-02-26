@@ -27,20 +27,6 @@
         </div>
       </div>
       <div class="p-2 g-col-6">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Number of itens: {{ paginationSize }}
-            </button>
-            <ul class="dropdown-menu">
-              <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(this.currentPage, 2, this.orderProperty, this.orderOrientation)">2</button></li>
-              <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(this.currentPage, 5, this.orderProperty, this.orderOrientation)">5</button></li>
-              <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(this.currentPage, 10, this.orderProperty, this.orderOrientation)">10</button></li>
-            </ul>
-          </div>
         <div>
           Filter by operation: <input type="text" placeholder="" v-model="filter" />
         </div>
@@ -86,6 +72,22 @@
           </nav>
         </div>
         <div class="container">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Number of itens: {{ paginationSize }}
+            </button>
+            <ul class="dropdown-menu">
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, 2, this.orderProperty, this.orderOrientation)">2</button></li>
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, 5, this.orderProperty, this.orderOrientation)">5</button></li>
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, 10, this.orderProperty, this.orderOrientation)">10</button></li>
+              <li><button class="dropdown-item"
+                  v-on:click="metodoTest()">x</button></li>
+            </ul>
+          </div>
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -182,6 +184,10 @@ export default {
       }).catch((error) => {
         console.log(error)
       })
+    },
+    metodoTest () {
+      this.paginationSize = 2
+      this.getRecordList()
     },
     refreshPagination (page, paginationSizeValue, orderPropertyValue, orderOrientationValue) {
       console.log('refreshPagination ===> this.currentPage ' + this.currentPage +
