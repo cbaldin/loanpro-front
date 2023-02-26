@@ -156,7 +156,6 @@ export default {
       mathResult: '',
       currentPage: undefined,
       paginationSize: undefined,
-      paginationTamanho: 10,
       orderProperty: 'userBalance',
       variavelTeste: 3,
       orderOrientation: 'ASC',
@@ -190,16 +189,9 @@ export default {
     metodoTest (varInteger) {
       this.paginationSize = 2
       this.variavelTeste = varInteger
-      this.paginationTamanho = varInteger
-      console.log(this.paginationSize + 'anchor 32')
-      console.log(this.variavelTeste + 'anchor 33')
-      console.log(this.paginationTamanho + 'anchar 35')
       this.getRecordList()
     },
     refreshPagination (page, paginationSizeValue, orderPropertyValue, orderOrientationValue) {
-      console.log(this.paginationTamanho + 'anchor 41')
-      this.paginationTamanho = paginationSizeValue
-      console.log(this.paginationTamanho + 'anchor 42')
       this.currentPage = page
       this.paginationSize = paginationSizeValue
       this.orderProperty = orderPropertyValue
@@ -208,9 +200,6 @@ export default {
       this.getRecordList()
     },
     getRecordList () {
-      console.log('dentro do getRecordList ' + this.paginationSize)
-      console.log(this.variavelTeste + 'anchor 34')
-      console.log(this.paginationTamanho + 'anchor 44')
       if (this.currentPage === undefined) {
         this.currentPage = 0
       }
@@ -224,12 +213,12 @@ export default {
         this.orderOrientation = 'ASC'
       }
       console.log('current page: ' + this.currentPage +
-      ', paginationSize: ' + this.paginationTamanho +
+      ', paginationSize: ' + this.paginationSize +
       ', orderProperty: ' + this.orderProperty +
       ', orderOrientation: ' + this.orderOrientation
       )
       fetchClient().get('/records?pag=' + this.currentPage +
-        '&paginationSize=' + this.paginationTamanho +
+        '&paginationSize=' + this.paginationSize +
         '&orderByProperty=' + this.orderProperty +
         '&orderBy=' + this.orderOrientation
       ).then((response) => {
