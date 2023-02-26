@@ -197,9 +197,9 @@ export default {
       this.getRecordList()
     },
     refreshPagination (page, paginationSizeValue, orderPropertyValue, orderOrientationValue) {
-      console.log (this.paginationTamanho + 'anchor 41')
+      console.log(this.paginationTamanho + 'anchor 41')
       this.paginationTamanho = paginationSizeValue
-      console.log (this.paginationTamanho + 'anchor 42')
+      console.log(this.paginationTamanho + 'anchor 42')
       this.currentPage = page
       this.paginationSize = paginationSizeValue
       this.orderProperty = orderPropertyValue
@@ -210,7 +210,7 @@ export default {
     getRecordList () {
       console.log('dentro do getRecordList ' + this.paginationSize)
       console.log(this.variavelTeste + 'anchor 34')
-      console.log (this.paginationTamanho + 'anchor 44')
+      console.log(this.paginationTamanho + 'anchor 44')
       if (this.currentPage === undefined) {
         this.currentPage = 0
       }
