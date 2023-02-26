@@ -224,7 +224,7 @@ export default {
         this.orderOrientation = 'ASC'
       }
       console.log('current page: ' + this.currentPage +
-      ', paginationSize: ' + this.paginationSize +
+      ', paginationSize: ' + this.paginationTamanho +
       ', orderProperty: ' + this.orderProperty +
       ', orderOrientation: ' + this.orderOrientation
       )
