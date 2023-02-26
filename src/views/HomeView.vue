@@ -123,7 +123,6 @@
 
 <script>
 import axios from 'axios'
-import api from '../main.js'
 import { range } from 'lodash'
 
 const fetchClient = () => {
@@ -229,7 +228,6 @@ export default {
       })
     },
     deleteRecord (id) {
-      console.log('teste: passou delete ' + api.delete)
       fetchClient().delete('/records?id=' + id).then((response) => {
         this.getRecordList()
       }).catch((error) => {
