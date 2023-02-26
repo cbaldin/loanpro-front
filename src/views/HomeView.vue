@@ -59,14 +59,14 @@
             <ul class="pagination justify-content-center">
               <li :class="{ disabled: this.currentPage == 0 }">
                 <button class="page-link"
-                  v-on:click="refreshPagination(this.currentPage - 1, this.paginationSize)">Previous</button>
+                  v-on:click="refreshPagination(this.currentPage - 1, this.paginationSize, this.orderProperty, this.orderOrientation)">Previous</button>
               </li>
               <li class="page-item" v-for="(page, index) in pages" v-bind:key="index">
-                <button class="page-link" v-on:click="refreshPagination(page - 1, this.paginationSize)">{{ page }}</button>
+                <button class="page-link" v-on:click="refreshPagination(page - 1, this.paginationSize, this.orderProperty, this.orderOrientation)">{{ page }}</button>
               </li>
               <li :class="{ disabled: this.currentPage == this.pages.length - 1 }">
                 <button class="page-link"
-                  v-on:click="refreshPagination(this.currentPage + 1, this.paginationSize)">Next</button>
+                  v-on:click="refreshPagination(this.currentPage + 1, this.paginationSize, this.orderProperty, this.orderOrientation)">Next</button>
               </li>
             </ul>
           </nav>
@@ -185,6 +185,14 @@ export default {
       })
     },
     refreshPagination (page, paginationSize, orderProperty, orderOrientation) {
+      console.log('refreshPagination ===> this.currentPage ' + this.currentPage +
+      '; this.paginationSize ' + this.paginationSize +
+      '; this.orderProperty ' + this.orderProperty +
+      '; this.orderOrientation ' + this.orderOrientation +
+      '; currentPage ' + page +
+      '; paginationSize ' + paginationSize +
+      '; orderProperty ' + orderProperty +
+      '; orderOrientation ' + orderOrientation)
       this.currentPage = page
       this.paginationSize = paginationSize
       this.orderProperty = orderProperty
