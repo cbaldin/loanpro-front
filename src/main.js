@@ -3,10 +3,11 @@ import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
 import axios from 'axios'
-import './index.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.js'
 
 const api = axios.create({
-  baseURL: 'https://ec2-44-204-177-134.compute-1.amazonaws.com:4443/api/v1'
+  baseURL: 'https://localhost:4443/api/v1'
 })
 
 export default api

@@ -25,7 +25,7 @@ export const useAuth = defineStore('auth', () => {
       })
       return data
     } catch (error) {
-      console.log('Error on token validation')
+      alert.apply('Error on token validation')
     }
   }
 

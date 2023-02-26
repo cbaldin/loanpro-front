@@ -1,48 +1,121 @@
 <template>
   <div>
     <h1>Operations</h1>
-    <br><br><br>
-    <div class="container">
-      <div name="operations" class="myDiv">
-        <div name="generateString">
-          <div>The generated random string: <b>{{ stringGerada }}</b></div>
-          <button v-on:click="getRandomString">Generate random string</button>
+    <br>
+    <div class="d-flex justify-content-center grid gap-3">
+      <div name="operations" class="p-2 g-col-6">
+        <div name="generateString" class="grid gap-3">
+          <div class="p-2 g-col-6">
+            <button v-on:click="getRandomString" class="btn btn-secondary">Generate random string</button>
+          </div>
+          <div class="p-2 g-col-6">The generated random string is: <b>{{ stringGerada }}</b></div>
         </div>
         <br><br><br>
         <div>
-          <div>
-            <input type="number" placeholder="Operator 1" v-model="mathOperators.operator1" >
-            <input type="number" placeholder="Operator 2" v-model="mathOperators.operator2" >
+          <div class="d-flex flex-column mb-3 grid gap-3">
+            <input type="number" placeholder="Operator 1" v-model="mathOperators.operator1">
+            <input type="number" placeholder="Operator 2" v-model="mathOperators.operator2">
           </div>
-          <div>
-            <button v-on:click="sum(mathOperators)">Sum</button>
-            <button v-on:click="sub(mathOperators)">Sub</button>
-            <button v-on:click="div(mathOperators)">Div</button>
-            <button v-on:click="mult(mathOperators)">Mult</button>
-            <button v-on:click="squareRoot(mathOperators.operator1)">Square Root</button>
+          <div class="d-flex flex-column mb-3 grid gap-3">
+            <button class="btn btn-secondary" v-on:click="sum(mathOperators)">Sum</button>
+            <button class="btn btn-secondary" v-on:click="sub(mathOperators)">Sub</button>
+            <button class="btn btn-secondary" v-on:click="div(mathOperators)">Div</button>
+            <button class="btn btn-secondary" v-on:click="mult(mathOperators)">Mult</button>
+            <button class="btn btn-secondary" v-on:click="squareRoot(mathOperators.operator1)">Square Root</button>
             <div>The result for <b>{{ operation }}</b> is : <b>{{ mathResult }}</b></div>
           </div>
         </div>
       </div>
-      <div class="myDiv">
-        <table border="1px">
-          <tr>
-            <th>Operation</th>
-            <th>Amount</th>
-            <th>User Balance</th>
-            <th>Operation Response</th>
-            <th>Date</th>
-            <th>Delete</th>
-          </tr>
-          <tr v-for="record in userRecords" :key="record.id">
-            <td>{{ record.operation }}</td>
-            <td>{{ record.amount }}</td>
-            <td>{{ record.userBalance }}</td>
-            <td>{{ record.operationResponse }}</td>
-            <td>{{ record.date }}</td>
-            <td><button v-on:click="deleteRecord(record.id)" >Delete</button></td>
-          </tr>
-        </table>
+      <div class="p-2 g-col-6">
+        <div>
+          Filter by operation: <input type="text" placeholder="" v-model="filter" />
+        </div>
+        <div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Operation</th>
+                <th>Amount</th>
+                <th>User Balance</th>
+                <th>Operation Response</th>
+                <th>Date</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="record in filteredRows" :key="record.id">
+                <td>{{ record.operation }}</td>
+                <td>{{ record.amount }}</td>
+                <td>{{ record.userBalance }}</td>
+                <td>{{ record.operationResponse }}</td>
+                <td>{{ record.date }}</td>
+                <td><button v-on:click="deleteRecord(record.id)">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div name="paginacao">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li :class="{ disabled: this.currentPage == 0 }">
+                <button class="page-link"
+                  v-on:click="refreshPagination(this.currentPage - 1, this.paginationSize)">Previous</button>
+              </li>
+              <li class="page-item" v-for="(page, index) in pages" v-bind:key="index">
+                <button class="page-link" v-on:click="refreshPagination(page - 1, this.paginationSize)">{{ page }}</button>
+              </li>
+              <li :class="{ disabled: this.currentPage == this.pages.length - 1 }">
+                <button class="page-link"
+                  v-on:click="refreshPagination(this.currentPage + 1, this.paginationSize)">Next</button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="container">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Number os itens: {{ paginationSize }}
+            </button>
+            <ul class="dropdown-menu">
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, 2, this.orderProperty, this.orderOrientation)">2</button></li>
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, 5, this.orderProperty, this.orderOrientation)">5</button></li>
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, 10, this.orderProperty, this.orderOrientation)">10</button></li>
+            </ul>
+          </div>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Order By Property
+            </button>
+            <ul class="dropdown-menu">
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, this.paginationSize, 'operation', this.orderOrientation)">Operation</button>
+              </li>
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, this.paginationSize, 'userBalance', this.orderOrientation)">User
+                  Balance</button></li>
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, this.paginationSize, 'date', this.orderOrientation)"> Date</button></li>
+            </ul>
+          </div>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Order By Orientation
+            </button>
+            <ul class="dropdown-menu">
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, this.paginationSize, this.orderProperty, 'ASC')">ASC</button>
+              </li>
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, this.paginationSize, this.orderProperty, 'DESC')">DESC </button></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -51,10 +124,11 @@
 <script>
 import axios from 'axios'
 import api from '../main.js'
+import { range } from 'lodash'
 
 const fetchClient = () => {
   const defaultOptions = {
-    baseURL: 'https://ec2-44-204-177-134.compute-1.amazonaws.com:4443/api/v1',
+    baseURL: 'https://localhost:4443/api/v1',
     headers: {
       'Content-Type': 'application/json'
     }
@@ -74,13 +148,31 @@ export default {
   data () {
     return {
       stringGerada: '',
+      filter: '',
       userRecords: this.getRecordList(),
       operation: '',
       mathResult: '',
+      currentPage: 0,
+      paginationSize: 10,
+      orderProperty: 'userBalance',
+      orderOrientation: 'ASC',
+      pages: [],
+      source: [],
+      pagination: {},
       mathOperators: {
         operator1: '',
         operator2: ''
       }
+    }
+  },
+  computed: {
+    filteredRows () {
+      return this.userRecords.filter(row => {
+        const operations = row.operation.toString().toLowerCase()
+        const searchTerm = this.filter.toLowerCase()
+
+        return operations.includes(searchTerm)
+      })
     }
   },
   methods: {
@@ -92,9 +184,40 @@ export default {
         console.log(error)
       })
     },
+    refreshPagination (page, paginationSize, orderProperty, orderOrientation) {
+      this.currentPage = page
+      this.paginationSize = paginationSize
+      this.orderProperty = orderProperty
+      this.orderOrientation = orderOrientation
+      this.getRecordList()
+    },
     getRecordList () {
-      fetchClient().get('/records').then((response) => {
-        this.userRecords = response.data
+      console.log('dentro do getRecordList ' + this.paginationSize)
+      if (this.currentPage === undefined) {
+        this.currentPage = 0
+      }
+      if (this.paginationSize === undefined) {
+        this.paginationSize = 10
+      }
+      if (this.orderProperty === undefined) {
+        this.orderProperty = 'userBalance'
+      }
+      if (this.orderOrientation === undefined) {
+        this.orderOrientation = 'ASC'
+      }
+      console.log('current page: ' + this.currentPage +
+      ', paginationSize: ' + this.paginationSize +
+      ', orderProperty: ' + this.orderProperty +
+      ', orderOrientation: ' + this.orderOrientation
+      )
+      fetchClient().get('/records?pag=' + this.currentPage +
+        '&paginationSize=' + this.paginationSize +
+        '&orderByProperty=' + this.orderProperty +
+        '&orderBy=' + this.orderOrientation
+      ).then((response) => {
+        this.userRecords = response.data.content
+        this.pagination = response.data
+        this.pages = range(1, response.data.totalPages + 1)
       })
     },
     deleteRecord (id) {
@@ -144,16 +267,6 @@ export default {
 }
 </script>
 
-<style>
-.myDiv {
-  display: inline-block;
-  text-align: center;
-  width: 40%;
-  padding: 5px;
-}
-
-.container {
+<style>.container {
   display: flex;
-}
-
-</style>
+}</style>

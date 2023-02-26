@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import { useAuth } from '@/stores/auth.js'
 
@@ -24,17 +24,21 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 
 router.beforeEach((to, from, next) => {
+  console.log('passou pelo router' + to + ' @ ' + from)
   if (to.meta?.auth) {
     const auth = useAuth()
+    console.log('User token, eh o: ' + auth.token)
+    console.log('O auth.user é o -> ' + auth.user)
     if (auth.token && auth.user) {
       const isAuthenticated = auth.checkToken()
-      console.log(isAuthenticated)
+      console.log('passou pelo router 3' + to)
       if (isAuthenticated) {
+        console.log('passou pelo router 4' + to)
         next()
       } else {
         next({ name: 'login' })

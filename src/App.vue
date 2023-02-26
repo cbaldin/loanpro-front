@@ -1,16 +1,17 @@
 <template>
   <template v-if="auth.isAuthenticated">
-    Hello user: {{ auth.user }} |
+    <div class="d-flex justify-content-center d-flex flex-row mb-3 grid gap-3" >
+      <label class="fs-4 p-2 g-col-6">Hello user: {{ auth.user }}</label>
+      <div class="fs-4 p-2 g-col-6">
+        <router-link @click="logout" to="/login">Logout</router-link>
+      </div>
+    </div>
   </template>
   <template v-else>
-    Hello visitor  |
+    <div>
+      <label class="form-label"> Hello Visitor </label>
+    </div>
   </template>
-  <router-link @click="logout" to="/login">Logout</router-link>
-  <nav>
-    <router-link to="/login">Login</router-link>
-    <br>
-    <router-link to="/operations">Operations</router-link>
-  </nav>
   <router-view/>
 </template>
 
