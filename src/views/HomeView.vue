@@ -85,7 +85,7 @@
               <li><button class="dropdown-item"
                   v-on:click="refreshPagination(this.currentPage, 10, this.orderProperty, this.orderOrientation)">10</button></li>
               <li><button class="dropdown-item"
-                  v-on:click="metodoTest()">x</button></li>
+                  v-on:click="metodoTest(9)">x</button></li>
             </ul>
           </div>
           <div class="dropdown">
@@ -186,9 +186,9 @@ export default {
         console.log(error)
       })
     },
-    metodoTest () {
+    metodoTest (varInteger) {
       this.paginationSize = 2
-      this.variavelTeste = 5
+      this.variavelTeste = varInteger
       console.log(this.paginationSize + 'anchor 32')
       console.log(this.variavelTeste + 'anchor 33')
       this.getRecordList()
