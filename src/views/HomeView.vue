@@ -128,7 +128,7 @@ import { range } from 'lodash'
 
 const fetchClient = () => {
   const defaultOptions = {
-    baseURL: 'https://localhost:4443/api/v1',
+    baseURL: 'https://ec2-44-212-33-47.compute-1.amazonaws.com:4443/api/v1',
     headers: {
       'Content-Type': 'application/json'
     }
