@@ -211,6 +211,7 @@ export default {
     },
     getRecordList () {
       console.log('dentro do getRecordList ' + this.paginationSize)
+      console.log(this.variavelTeste + 'anchor 34')
       if (this.currentPage === undefined) {
         this.currentPage = 0
       }
