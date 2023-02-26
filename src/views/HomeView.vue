@@ -27,6 +27,20 @@
         </div>
       </div>
       <div class="p-2 g-col-6">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Number of itens: {{ paginationSize }}
+            </button>
+            <ul class="dropdown-menu">
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, 2, this.orderProperty, this.orderOrientation)">2</button></li>
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, 5, this.orderProperty, this.orderOrientation)">5</button></li>
+              <li><button class="dropdown-item"
+                  v-on:click="refreshPagination(this.currentPage, 10, this.orderProperty, this.orderOrientation)">10</button></li>
+            </ul>
+          </div>
         <div>
           Filter by operation: <input type="text" placeholder="" v-model="filter" />
         </div>
@@ -72,20 +86,6 @@
           </nav>
         </div>
         <div class="container">
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Number of itens: {{ paginationSize }}
-            </button>
-            <ul class="dropdown-menu">
-              <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(this.currentPage, 2, this.orderProperty, this.orderOrientation)">2</button></li>
-              <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(this.currentPage, 5, this.orderProperty, this.orderOrientation)">5</button></li>
-              <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(this.currentPage, 10, this.orderProperty, this.orderOrientation)">10</button></li>
-            </ul>
-          </div>
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -183,21 +183,21 @@ export default {
         console.log(error)
       })
     },
-    refreshPagination (page, paginationSize, orderProperty, orderOrientation) {
+    refreshPagination (page, paginationSizeValue, orderPropertyValue, orderOrientationValue) {
       console.log('refreshPagination ===> this.currentPage ' + this.currentPage +
       '; this.paginationSize ' + this.paginationSize +
       '; this.orderProperty ' + this.orderProperty +
       '; this.orderOrientation ' + this.orderOrientation +
       '; currentPage ' + page +
-      '; paginationSize ' + paginationSize +
-      '; orderProperty ' + orderProperty +
-      '; orderOrientation ' + orderOrientation)
+      '; paginationSize ' + paginationSizeValue +
+      '; orderProperty ' + orderPropertyValue +
+      '; orderOrientation ' + orderOrientationValue)
       this.currentPage = page
-      this.paginationSize = paginationSize
-      this.orderProperty = orderProperty
-      this.orderOrientation = orderOrientation
+      this.paginationSize = paginationSizeValue
+      this.orderProperty = orderPropertyValue
+      this.orderOrientation = orderOrientationValue
+      console.log('antes do record list no refresh pagination')
       this.getRecordList()
-      console.log(this.getRecordList())
     },
     getRecordList () {
       console.log('dentro do getRecordList ' + this.paginationSize)
