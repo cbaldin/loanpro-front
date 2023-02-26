@@ -121,7 +121,7 @@
       </div>
     </div>
   </div>
-  valor da variavel {{ this.paginationSize }}
+  valor da variavel {{ variavelTeste }}
 </template>
 
 <script>
@@ -157,6 +157,7 @@ export default {
       currentPage: undefined,
       paginationSize: undefined,
       orderProperty: 'userBalance',
+      variavelTeste: 3,
       orderOrientation: 'ASC',
       pages: [],
       source: [],
@@ -187,7 +188,9 @@ export default {
     },
     metodoTest () {
       this.paginationSize = 2
+      this.variavelTeste = 5
       console.log(this.paginationSize + 'anchor 32')
+      console.log(this.variavelTeste + 'anchor 33')
       this.getRecordList()
     },
     refreshPagination (page, paginationSizeValue, orderPropertyValue, orderOrientationValue) {
