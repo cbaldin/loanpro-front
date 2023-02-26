@@ -229,7 +229,7 @@ export default {
       ', orderOrientation: ' + this.orderOrientation
       )
       fetchClient().get('/records?pag=' + this.currentPage +
-        '&paginationSize=' + this.paginationSize +
+        '&paginationSize=' + this.paginationTamanho +
         '&orderByProperty=' + this.orderProperty +
         '&orderBy=' + this.orderOrientation
       ).then((response) => {
