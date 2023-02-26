@@ -28,7 +28,7 @@
       </div>
       <div class="p-2 g-col-6">
         <div>
-          Filter by operation: <input type="text" placeholder="" v-model="filter" />
+          <!--Filter by operation: <input type="text" placeholder="" v-model="filter" />-->
         </div>
         <div>
           <table class="table table-striped">
@@ -43,7 +43,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="record in filteredRows" :key="record.id">
+              <tr v-for="record in userRecords" :key="record.id"> <!--filteredRows-->
                 <td>{{ record.operation }}</td>
                 <td>{{ record.amount }}</td>
                 <td>{{ record.userBalance }}</td>
@@ -147,8 +147,7 @@ const fetchClient = () => {
 export default {
   data () {
     return {
-      stringGerada: '',
-      filter: '',
+      stringGerada: '', //    filter: '',
       userRecords: this.getRecordList(),
       operation: '',
       mathResult: '',
@@ -165,16 +164,16 @@ export default {
       }
     }
   },
-  computed: {
-    filteredRows () {
-      return this.userRecords.filter(row => {
-        const operations = row.operation.toString().toLowerCase()
-        const searchTerm = this.filter.toLowerCase()
+  // computed: {
+  //  filteredRows () {
+  //    return this.userRecords.filter(row => {
+  //      const operations = row.operation.toString().toLowerCase()
+  //      const searchTerm = this.filter.toLowerCase()
 
-        return operations.includes(searchTerm)
-      })
-    }
-  },
+  //      return operations.includes(searchTerm)
+  //    })
+  //  }
+  // },
   methods: {
     getRandomString () {
       fetchClient().get('/random-string').then((response) => {
