@@ -197,6 +197,7 @@ export default {
       this.orderProperty = orderProperty
       this.orderOrientation = orderOrientation
       this.getRecordList()
+      console.log(this.getRecordList())
     },
     getRecordList () {
       console.log('dentro do getRecordList ' + this.paginationSize)
