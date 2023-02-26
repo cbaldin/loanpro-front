@@ -160,7 +160,9 @@ export default {
       orderOrientation: 'ASC',
       pages: [],
       source: [],
-      pagination: {},
+      pagination: {
+        paginationSize: 5
+      },
       mathOperators: {
         operator1: '',
         operator2: ''
@@ -188,7 +190,8 @@ export default {
     },
     metodoTest () {
       this.paginationSize = 2
-      console.log(this.paginationSize + 'anchor 32')
+      this.pagination.paginationSize = 3
+      console.log(this.pagination.paginationSize + 'anchor 32')
       this.getRecordList()
     },
     refreshPagination (page, paginationSizeValue, orderPropertyValue, orderOrientationValue) {
