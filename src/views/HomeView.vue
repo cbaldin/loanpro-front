@@ -121,6 +121,7 @@
       </div>
     </div>
   </div>
+  valor da variavel {{ this.paginationSize }}
 </template>
 
 <script>
