@@ -153,8 +153,8 @@ export default {
       userRecords: this.getRecordList(),
       operation: '',
       mathResult: '',
-      currentPage: 0,
-      paginationSize: 10,
+      currentPage: undefined,
+      paginationSize: undefined,
       orderProperty: 'userBalance',
       orderOrientation: 'ASC',
       pages: [],
@@ -187,6 +187,7 @@ export default {
     },
     metodoTest () {
       this.paginationSize = 2
+      console.log(this.paginationSize + 'anchor 32')
       this.getRecordList()
     },
     refreshPagination (page, paginationSizeValue, orderPropertyValue, orderOrientationValue) {
