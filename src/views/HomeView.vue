@@ -199,7 +199,7 @@ export default {
       console.log('antes do record list no refresh pagination')
       this.getRecordList()
     },
-    getRecordList () {
+    getRecordList: function () {
       if (this.currentPage === undefined) {
         this.currentPage = 0
       }
