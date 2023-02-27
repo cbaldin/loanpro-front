@@ -22,7 +22,7 @@ Default user:
 * test@test.com ,  123
   
 ## Tech Stack
-Project at https://my-loan-pro.netlify.app
+Project at https://my-loan-pro.netlify.app - Ps: Pagination is workink fine local, but is''n working properly in this link. 
 Project created in Vue3 (Pinia, bootstrap-vue, axios etc).
 
 Ps: The aws address may be different because it is not a fixed IP.
