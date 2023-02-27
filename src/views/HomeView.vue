@@ -79,11 +79,11 @@
             </button>
             <ul class="dropdown-menu">
               <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(this.currentPage, 2, this.orderProperty, this.orderOrientation)">2</button></li>
+                  v-on:click="updatePaginationSize(2)">2</button></li>
               <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(this.currentPage, 5, this.orderProperty, this.orderOrientation)">5</button></li>
+                  v-on:click="updatePaginationSize(5)">5</button></li>
               <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(this.currentPage, 10, this.orderProperty, this.orderOrientation)">10</button></li>
+                  v-on:click="updatePaginationSize(10)">10</button></li>
               <li><button class="dropdown-item"
                   v-on:click="metodoTest(9)">x</button></li>
             </ul>
@@ -121,7 +121,6 @@
       </div>
     </div>
   </div>
-  valor da variavel {{ variavelTeste }}
 </template>
 
 <script>
@@ -157,7 +156,6 @@ export default {
       currentPage: 0,
       paginationSize: 10,
       orderProperty: 'userBalance',
-      variavelTeste: 3,
       orderOrientation: 'ASC',
       pages: [],
       source: [],
@@ -189,6 +187,10 @@ export default {
     metodoTest (varInteger) {
       this.paginationSize = 2
       this.variavelTeste = varInteger
+      this.getRecordList()
+    },
+    updatePaginationSize (paginationSizeValue) {
+      this.paginationSize = paginationSizeValue
       this.getRecordList()
     },
     refreshPagination (page, paginationSizeValue, orderPropertyValue, orderOrientationValue) {
