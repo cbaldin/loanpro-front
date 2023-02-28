@@ -35,7 +35,7 @@ export default {
       stringGerada: '',
       contar: 0,
       filter: '',
-      userRecords: this.getRecordList(),
+      userRecords: '',
       operation: '',
       mathResult: '',
       currentPage: 0,
@@ -48,16 +48,6 @@ export default {
         operator1: '',
         operator2: ''
       }
-    }
-  },
-  computed: {
-    filteredRows () {
-      return this.userRecords.filter(row => {
-        const operations = row.operation.toString().toLowerCase()
-        const searchTerm = this.filter.toLowerCase()
-
-        return operations.includes(searchTerm)
-      })
     }
   },
   methods: {
