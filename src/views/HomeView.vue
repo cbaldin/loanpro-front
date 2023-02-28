@@ -4,7 +4,8 @@
     <br>
     <div class="d-flex justify-content-center grid gap-3">
       <div name="operations" class="p-2 g-col-6">
-        <div name="generateString" class="grid gap-3">
+        <div name="genera
+        ring" class="grid gap-3">
           <div class="p-2 g-col-6">
             <button v-on:click="getRandomString" class="btn btn-secondary">Generate random string</button>
           </div>
@@ -71,8 +72,9 @@
             </ul>
           </nav>
         </div>
+        <button class="dropdown-item" v-on:click="refreshPagination(0, 2, 'id', 'ASC')">MEU BOTAO</button>
         <div class="container">
-          <div class="dropdown" hidden>
+          <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Number of itens: {{ paginationSize }}
@@ -86,7 +88,7 @@
                   v-on:click="refreshPagination(currentPage, 10, orderProperty, orderOrientation)">10</button></li>
             </ul>
           </div>
-            <select  class="form-control" name="LeaveType" @change="getRecordList()" v-model="paginationSize">
+            <select  class="form-control" name="LeaveType" @change="getRecordList()" v-model="paginationSize" hidden>
               <option value="" selected disabled >Pagination size</option>
               <option value="3">3</option>
               <option value="5">5</option>
@@ -194,13 +196,12 @@ export default {
       })
     },
     refreshPagination (page, paginationSizeValue, orderPropertyValue, orderOrientationValue) {
-      this.currentPage = parseInt(page, 10)
-      this.paginationSize = parseInt(paginationSizeValue, 10)
+      this.currentPage = page
+      this.paginationSize = paginationSizeValue
       console.log(this.paginationSize + 'passou')
       this.orderProperty = orderPropertyValue
       this.orderOrientation = orderOrientationValue
       console.log('antes do record list no refresh pagination')
-      this.operation = 'TESTE'
       this.getRecordList()
     },
     getRecordList: function () {
