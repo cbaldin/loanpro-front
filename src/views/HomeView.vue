@@ -221,6 +221,8 @@ export default {
     deleteRecord (id) {
       fetchClient().delete('/records?id=' + id).then((response) => {
         this.getRecordList()
+        this.paginationSize = 3
+        console.log('Passango pelo delete, pagination = ' + this.paginationSize)
       }).catch((error) => {
         console.log('Error' + error)
       })
