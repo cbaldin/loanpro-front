@@ -72,7 +72,7 @@
             </ul>
           </nav>
         </div>
-        <button class="dropdown-item" v-on:click="refreshPagination(0, 2, 'id', 'ASC')">MEU BOTAO</button>
+        <button class="dropdown-item" v-on:click="novoMetodo()">MEU BOTAO</button>
         <div class="container">
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -195,6 +195,12 @@ export default {
         console.log(error)
       })
     },
+    novoMetodo () {
+      fetchClient().get('/sum?x=' + 1 + '&y=' + 2).then((response) => {
+        console.log('passou pelo novo metodo sem alterar variaveeis')
+        this.getRecordList()
+      })
+    },
     refreshPagination (page, paginationSizeValue, orderPropertyValue, orderOrientationValue) {
       this.currentPage = page
       this.paginationSize = paginationSizeValue
@@ -204,7 +210,7 @@ export default {
       console.log('antes do record list no refresh pagination')
       this.getRecordList()
     },
-    getRecordList: function () {
+    getRecordList () {
       console.log(this.paginationSize + 'dentro do get record')
       if (this.currentPage === undefined) {
         this.currentPage = 0
