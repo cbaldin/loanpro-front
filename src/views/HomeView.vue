@@ -79,11 +79,11 @@
             </button>
             <ul class="dropdown-menu">
               <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(this.currentPage, 2, this.orderProperty, this.orderOrientation)">2</button></li>
+                  v-on:click="refreshPagination(currentPage, 2, orderProperty, orderOrientation)">2</button></li>
               <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(this.currentPage, 5, this.orderProperty, this.orderOrientation)">5</button></li>
+                  v-on:click="refreshPagination(currentPage, 5, orderProperty, orderOrientation)">5</button></li>
               <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(this.currentPage, 10, this.orderProperty, this.orderOrientation)">10</button></li>
+                  v-on:click="refreshPagination(currentPage, 10, orderProperty, orderOrientation)">10</button></li>
             </ul>
           </div>
           <div class="dropdown">
