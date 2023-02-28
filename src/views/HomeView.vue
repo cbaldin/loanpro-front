@@ -76,10 +76,15 @@
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Number of itens: {{ paginationSize }}
-            </button>
+            </button>]
+            <br>
+            <select name="LeaveType" @change="getRecordList()" class="form-control" v-model="paginationSize">
+              <option value="3">3</option>
+              <option value="5">5</option>
+            </select>
             <ul class="dropdown-menu">
               <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(currentPage, parseInt(2,10), orderProperty, orderOrientation)">2</button></li>
+                  v-on:click="refreshPagination(currentPage, 2, orderProperty, orderOrientation)">2</button></li>
               <li><button class="dropdown-item"
                   v-on:click="refreshPagination(currentPage, 5, orderProperty, orderOrientation)">5</button></li>
               <li><button class="dropdown-item"
@@ -174,7 +179,7 @@ export default {
     }
   },
   watch: {
-    paginationSize (newValue, oldValue) {
+    operation (newValue, oldValue) {
       console.log(' passou no WATHCER =>>>>>> novo valor ' + newValue + ', antigo valor ' + oldValue)
     }
   },
