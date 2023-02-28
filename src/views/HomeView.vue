@@ -79,7 +79,7 @@
             </button>
             <ul class="dropdown-menu">
               <li><button class="dropdown-item"
-                  v-on:click="refreshPagination(currentPage, 2, orderProperty, orderOrientation)">2</button></li>
+                  v-on:click="refreshPagination(currentPage, parseInt(2,10), orderProperty, orderOrientation)">2</button></li>
               <li><button class="dropdown-item"
                   v-on:click="refreshPagination(currentPage, 5, orderProperty, orderOrientation)">5</button></li>
               <li><button class="dropdown-item"
@@ -173,6 +173,11 @@ export default {
       })
     }
   },
+  watch: {
+    paginationSize (newValue, oldValue) {
+      console.log(' passou no WATHCER =>>>>>> novo valor ' + newValue + ', antigo valor ' + oldValue)
+    }
+  },
   methods: {
     getRandomString () {
       fetchClient().get('/random-string').then((response) => {
@@ -189,6 +194,7 @@ export default {
       this.orderProperty = orderPropertyValue
       this.orderOrientation = orderOrientationValue
       console.log('antes do record list no refresh pagination')
+      this.operation = 'TESTE'
       this.getRecordList()
     },
     getRecordList: function () {
