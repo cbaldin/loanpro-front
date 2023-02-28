@@ -183,14 +183,16 @@ export default {
       })
     },
     refreshPagination (page, paginationSizeValue, orderPropertyValue, orderOrientationValue) {
-      this.currentPage = page
-      this.paginationSize = paginationSizeValue
+      this.currentPage = parseInt(page, 10)
+      this.paginationSize = parseInt(paginationSizeValue, 10)
+      console.log(this.paginationSize)
       this.orderProperty = orderPropertyValue
       this.orderOrientation = orderOrientationValue
       console.log('antes do record list no refresh pagination')
       this.getRecordList()
     },
     getRecordList: function () {
+      console.log(this.paginationSize + 'dentro do get record')
       if (this.currentPage === undefined) {
         this.currentPage = 0
       }
