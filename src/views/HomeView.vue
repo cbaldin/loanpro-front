@@ -35,7 +35,7 @@ export default {
       stringGerada: '',
       contar: 0,
       filter: '',
-      userRecords: '',
+      userRecords: this.getRecordList(),
       operation: '',
       mathResult: '',
       currentPage: 0,
