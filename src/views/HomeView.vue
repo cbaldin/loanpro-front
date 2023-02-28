@@ -198,6 +198,7 @@ export default {
     novoMetodo () {
       fetchClient().get('/sum?x=' + 1 + '&y=' + 2).then((response) => {
         console.log('passou pelo novo metodo sem alterar variaveeis')
+        this.paginationSize = 5
         this.getRecordList()
       })
     },
