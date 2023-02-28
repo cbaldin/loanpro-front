@@ -185,7 +185,7 @@ export default {
     refreshPagination (page, paginationSizeValue, orderPropertyValue, orderOrientationValue) {
       this.currentPage = parseInt(page, 10)
       this.paginationSize = parseInt(paginationSizeValue, 10)
-      console.log(this.paginationSize)
+      console.log(this.paginationSize + 'passou')
       this.orderProperty = orderPropertyValue
       this.orderOrientation = orderOrientationValue
       console.log('antes do record list no refresh pagination')
