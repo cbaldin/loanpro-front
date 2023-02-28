@@ -1,6 +1,5 @@
 <template>
   <div>
-    <button @click="contando"> meui botao</button>
     <br>
     <div class="d-flex justify-content-center grid gap-3">
       <div name="operations" class="p-2 g-col-6">
