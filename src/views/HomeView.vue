@@ -1,6 +1,8 @@
 <template>
   <div>
     <h1>Operations</h1>
+    era aqui {{ paginationSize }}
+    <button @click="contando"> meui botao</button>
     <br>
     <div class="d-flex justify-content-center grid gap-3">
       <div name="operations" class="p-2 g-col-6">
@@ -154,6 +156,7 @@ export default {
   data () {
     return {
       stringGerada: '',
+      contar: 0,
       filter: '',
       userRecords: this.getRecordList(),
       operation: '',
@@ -274,6 +277,9 @@ export default {
         this.mathResult = response.data
         this.getRecordList()
       })
+    },
+    contando () {
+      this.paginationSize = this.paginationSize + 1
     }
   }
 }
