@@ -43,7 +43,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="record in userRecords" :key="record.id">
+              <tr v-for="record in filteredRows" :key="record.id">
                 <td>{{ record.operation }}</td>
                 <td>{{ record.amount }}</td>
                 <td>{{ record.userBalance }}</td>
@@ -72,16 +72,11 @@
           </nav>
         </div>
         <div class="container">
-          <div class="dropdown">
+          <div class="dropdown" hidden>
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Number of itens: {{ paginationSize }}
-            </button>]
-            <br>
-            <select name="LeaveType" @change="getRecordList()" class="form-control" v-model="paginationSize">
-              <option value="3">3</option>
-              <option value="5">5</option>
-            </select>
+            </button>
             <ul class="dropdown-menu">
               <li><button class="dropdown-item"
                   v-on:click="refreshPagination(currentPage, 2, orderProperty, orderOrientation)">2</button></li>
@@ -91,6 +86,12 @@
                   v-on:click="refreshPagination(currentPage, 10, orderProperty, orderOrientation)">10</button></li>
             </ul>
           </div>
+            <select  class="form-control" name="LeaveType" @change="getRecordList()" v-model="paginationSize">
+              <option value="" selected disabled >Pagination size</option>
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+            </select>
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
               aria-expanded="false">
