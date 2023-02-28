@@ -72,7 +72,6 @@
             </ul>
           </nav>
         </div>
-        <button class="dropdown-item" v-on:click="novoMetodo()">MEU BOTAO</button>
         <div class="container">
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -181,11 +180,6 @@ export default {
       })
     }
   },
-  watch: {
-    operation (newValue, oldValue) {
-      console.log(' passou no WATHCER =>>>>>> novo valor ' + newValue + ', antigo valor ' + oldValue)
-    }
-  },
   methods: {
     getRandomString () {
       fetchClient().get('/random-string').then((response) => {
@@ -198,7 +192,6 @@ export default {
     novoMetodo () {
       fetchClient().get('/sum?x=' + 1 + '&y=' + 2).then((response) => {
         console.log('passou pelo novo metodo sem alterar variaveeis')
-        this.paginationSize = 5
         this.getRecordList()
       })
     },
