@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h1>Operations</h1>
-    era aqui {{ paginationSize }}
     <button @click="contando"> meui botao</button>
     <br>
     <div class="d-flex justify-content-center grid gap-3">
