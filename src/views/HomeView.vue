@@ -43,7 +43,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="record in filteredRows" :key="record.id">
+              <tr v-for="record in userRecords" :key="record.id">
                 <td>{{ record.operation }}</td>
                 <td>{{ record.amount }}</td>
                 <td>{{ record.userBalance }}</td>
@@ -221,8 +221,6 @@ export default {
     deleteRecord (id) {
       fetchClient().delete('/records?id=' + id).then((response) => {
         this.getRecordList()
-        this.paginationSize = 3
-        console.log('Passango pelo delete, pagination = ' + this.paginationSize)
       }).catch((error) => {
         console.log('Error' + error)
       })
